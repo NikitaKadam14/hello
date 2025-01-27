@@ -2,38 +2,33 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [color, setColor] = useState("");
-  const [check, setCheck] = useState("");
-  const onFruitChecker = () => {
-    if (color === "green") {
-      setCheck("Unripe");
+  const [weather, setWeather] = useState();
+  const [check, setCheck] = useState();
+  const onWeatherClick = () => {
+    if (weather === "sunny") {
+      setCheck("Go for Walk");
+
     }
-    else if (color === "yellow") {
-      setCheck("ripe");
+    else if (weather === "Rainy") {
+      setCheck("Read a book");
+
     }
-    else if (color === "brown") {
-      setCheck("Overripe");
+    else if (weather === "snowy") {
+      setCheck("Build a snowman");
+
     }
+}
+  const season = (event) => {
+    setWeather(event.target.value);
+
 
   }
-  const banana = (event) => {
-    setColor(event.target.value);
-
-  }
-
-
-  return (
+return (
     <div>
-      <h1>Fruit Ripeness Checker</h1>
-      <select value={color} onChange={banana}>
-        <option value="">select</option>
-        <option value={"green"}>green</option>
-        <option value={"yellow"}>yellow</option>
-        <option value={"brown"}>brown</option>
-      </select>
-      <button onClick={onFruitChecker}>Check</button>
+      <h1>Weather Activity Suggestion</h1>
+      <input type="text" value={weather} onChange={season} />
+      <button onClick={onWeatherClick}>check</button>
       <p>{check}</p>
-
     </div>
   );
 }
