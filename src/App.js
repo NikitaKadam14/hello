@@ -2,33 +2,31 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [weather, setWeather] = useState();
-  const [check, setCheck] = useState();
-  const onWeatherClick = () => {
-    if (weather === "sunny") {
-      setCheck("Go for Walk");
+  const [distance, setDistance] = useState();
+  const [result, setResult] = useState();
+  const onTranspotClick = () => {
+    if (distance < 3) {
+      setResult("walk")
 
     }
-    else if (weather === "Rainy") {
-      setCheck("Read a book");
+    else if (distance >= 3 && distance <= 15) {
+      setResult("Bike")
 
     }
-    else if (weather === "snowy") {
-      setCheck("Build a snowman");
-
+    else if (distance > 15) {
+      setResult("Car")
     }
-}
-  const season = (event) => {
-    setWeather(event.target.value);
-
-
   }
-return (
+  const mode = (event) => {
+    setDistance(event.target.value);
+  }
+  return (
     <div>
-      <h1>Weather Activity Suggestion</h1>
-      <input type="text" value={weather} onChange={season} />
-      <button onClick={onWeatherClick}>check</button>
-      <p>{check}</p>
+      <h1>Transportation Mode Selection</h1>
+      <input type="text" value={distance} onChange={mode} />
+      <button onClick={onTranspotClick}>check</button>
+      <p>{result}</p>
+
     </div>
   );
 }
