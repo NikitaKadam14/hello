@@ -2,35 +2,28 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [species, setSpecies] = useState("");
-  const [age, setAge] = useState("");
-  const [check, setCheck] = useState("");
-  const PetFoodReccomendation = () => {
-    if (age <=2) {
-      setCheck("puppy food");
+  const [check, setCheck] = useState("0");
+  const [numbers, setNumbers] = useState("");
+  const CountingPossitiveNumber = () => {
+    const arr = numbers.split(',');
+    let count = 0;
+    for (let i = 0; i < arr.length; i++) {
+      if (Number(arr[i]) > 0) {
+        count++;
+      }
     }
-    else if (age > 5) {
-      setCheck("senior cat food");
-    }
+    setCheck(count);
   }
-  const food = (event) => {
-    setSpecies(event.target.value);
+  const possitiveNumber = (event) => {
+    setNumbers(event.target.value);
   }
-  const petFood = (event) => {
-    setAge(event.target.value);
-  }
+
   return (
     <div>
-      <h1>pet Food Reccomendation</h1>
-      <select value={species} onChange={food}>
-        <option value="">select</option>
-        <option value={"dog"}>Dog</option>
-        <option value={"cat"}>Cat</option>
-      </select>
-      <input type="number" value={age} onChange={petFood} />
-      <button onClick={PetFoodReccomendation}>check</button>
+      <h1>Counting Possitive Number</h1>
+      <input type="text" value={numbers} onChange={possitiveNumber} />
+      <button onClick={CountingPossitiveNumber}>Calculate</button>
       <p>{check}</p>
-
 
     </div>
   );
