@@ -2,39 +2,39 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [score, setScore] = useState(0);
-  const [check, setCheck] = useState(0);
-  const onCalculateClick = () => {
-    if (score >= 90) {
-      setCheck("A");
+  const [color, setColor] = useState("");
+  const [check, setCheck] = useState("");
+  const onFruitChecker = () => {
+    if (color === "green") {
+      setCheck("Unripe");
     }
-    else if (score >= 80) {
-      setCheck("B");
+    else if (color === "yellow") {
+      setCheck("ripe");
     }
-    else if (score >= 70) {
-      setCheck("C");
+    else if (color === "brown") {
+      setCheck("Overripe");
     }
-    else if (score >= 60) {
-      setCheck("D");
-    }
-    else {
-      setCheck("f");
-    }
+
   }
-  const grade = (event) => {
-    setScore(event.target.value);
+  const banana = (event) => {
+    setColor(event.target.value);
+
   }
+
+
   return (
     <div>
-      <h1>Grade Calculator</h1>
-      <input type="number" value={score} onChange={grade} />
-      <button onClick={onCalculateClick}>Calculator</button>
+      <h1>Fruit Ripeness Checker</h1>
+      <select value={color} onChange={banana}>
+        <option value="">select</option>
+        <option value={"green"}>green</option>
+        <option value={"yellow"}>yellow</option>
+        <option value={"brown"}>brown</option>
+      </select>
+      <button onClick={onFruitChecker}>Check</button>
       <p>{check}</p>
 
-
     </div>
-
-
   );
 }
 
