@@ -2,37 +2,36 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [age, setAge] = useState(0);
-  const [price, setPrice] = useState(0);
-  const onMovieTicketPricingCheck = () => {
-    const toDaysDate = new Date();
-    const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const todaysDay = toDaysDate.getDay();
-    console.log(todaysDay);
-    let tempPrice = 0;
-    if (age <= 18) {
-      tempPrice = 8;
+  const [score, setScore] = useState(0);
+  const [check, setCheck] = useState(0);
+  const onCalculateClick = () => {
+    if (score >= 90) {
+      setCheck("A");
     }
-    else if (age >= 18) {
-      tempPrice = 12;
+    else if (score >= 80) {
+      setCheck("B");
     }
-    if (weekDays[todaysDay]==="Saturday") {
-      setPrice(tempPrice - 2);
+    else if (score >= 70) {
+      setCheck("C");
+    }
+    else if (score >= 60) {
+      setCheck("D");
     }
     else {
-      setPrice(tempPrice);
+      setCheck("f");
     }
   }
-  const check = (event) => {
-    setAge(event.target.value);
-
+  const grade = (event) => {
+    setScore(event.target.value);
   }
   return (
     <div>
-      <h1>Movie Ticket Pricing</h1>
-      <input type="number" value={age} onChange={check} />
-      <button onClick={onMovieTicketPricingCheck}>Check</button>
-      <p>{price}</p>
+      <h1>Grade Calculator</h1>
+      <input type="number" value={score} onChange={grade} />
+      <button onClick={onCalculateClick}>Calculator</button>
+      <p>{check}</p>
+
+
     </div>
 
 
